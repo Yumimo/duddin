@@ -8,6 +8,7 @@ public class CherryBlossomEvents : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _followCamera;
 
     public PlayableDirector cherryCutscene;
+    public Collider2D _cherryTriggerBlocker;
 
     public int prioCamera = 11;
     public int staticCamera = 10;
@@ -21,7 +22,6 @@ public class CherryBlossomEvents : MonoBehaviour
 
     public void EnterCherryBlossomArea()
     {
-
         _cherryBlossomCamera.Priority = prioCamera;
         _followCamera.Priority = staticCamera;
     }
@@ -30,5 +30,10 @@ public class CherryBlossomEvents : MonoBehaviour
     {
         _cherryBlossomCamera.Priority = staticCamera;
         _followCamera.Priority = prioCamera;
+
+        if(GameManager.Instance.HasRing)
+        {
+            _cherryTriggerBlocker.isTrigger = false;
+        }
     }
 }
